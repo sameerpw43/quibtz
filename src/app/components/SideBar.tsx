@@ -1,14 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaCog, FaRobot, FaSitemap, FaLock, FaEye, FaUser } from 'react-icons/fa';
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const [activeTab, setActiveTab] = useState(pathname);
-
+  const [activeTab, setActiveTab] = useState('/basic-config');
+  useEffect(() => {
+    if (pathname === '/') {
+      setActiveTab('/basic-config');
+    } else {
+      // Extract the path after the first slash and set it as active
+      const currentPath = pathname.slice(1) || 'basic-config';
+      setActiveTab(currentPath);
+    }
+  }, [pathname]);
   const navItems = [
     { name: 'Basic Config', path: '/basic-config', icon: <FaCog /> },
     { name: 'RAG', path: '/rag', icon: <FaRobot /> },
