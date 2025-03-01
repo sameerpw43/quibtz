@@ -29,7 +29,6 @@ export default function RagForm() {
 
   const handleAddConfig = (data: RagFormData) => {
     setConfigs((prevConfigs) => [...prevConfigs, data]); // Add new config to the array
-    reset(); // Clear the form after adding
   };
 
   return (
